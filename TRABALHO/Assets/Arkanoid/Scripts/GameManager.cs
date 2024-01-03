@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
 public static GameManager instance;
 public int vidas = 2;
-publicint tijolosRestantes; 
+public int tijolosRestantes; 
 
 public GameObject playerPrefab;
 public GameObject ballPrefab;
@@ -15,8 +15,8 @@ public GameObject ballPrefab;
 public Transform PlayerSpawnPoint;
 public Transform BallSpawnPoint;
 
-public player playerAtual;
-public ball ballAtual;
+public PlayerB playerAtual;
+public BallB ballAtual;
 
 public TextMeshProUGUI Contador;
 public TextMeshProUGUI MsgFinal;
@@ -28,38 +28,36 @@ private void Awake()
 {
     instance = this;
 }
-// Start is called before the first frame update
-public void  SpawnarNovoJogador()
-{
-   GameObject playerObj = Instantiate(playerPrefab,PlayerSpawnPoint.position,Quaternion.identity);
-   GameObject ballObj = Instantiate(ballPrefab,ballSpawnPoint.position,Quaternion.identity);
-   playerAtual = playerObj.GetComponent<player>();
-   ballAtual = ballObj.GetComponent<ball>();
+    // Start is called before the first frame update
 
-   segurando = true;
-
-   offset = playerAtual.transform.position = ballAtual.transform.position;
-
-}
-}
+      void Start()
+    {
+        
+    }
+   
  void Start()
 {
    SpawnarNovoJogador();
    AtualizarContador();
+  
 }
 public void AtualizarContador()
 {
     contador.text = $"Vidas: {vidas}";
 }
-
+  
 
 public void SpawnarNovoJogador()
 {
-    GameObject playerObj = 
-        Instantiate(playerPrefab, SpawnPointPlayerB.position, Quaternion.identity);
-    GameObject ballObj = 
-        Instantiate(ballPrefab, SpawnPointBallB.position, Quaternion.identity);
-}
+    GameObject playerObj =  Instantiate(playerPrefab, PlayerSpawnPointPlayerB.position, Quaternion.identity);
+    GameObject ballObj = Instantiate(ballPrefab, SpawnPointBallB.position, Quaternion.identity);
+
+        playerAtual = playerObj.GetComponent<PlayerB>();
+        ballAtual =  ballObj.GetComponent<BallB>();
+        segurando = true;
+        offset - playerAtual.transform.position - ballAtual.transform.position;
+        
+    }
 
 void update()
 {
